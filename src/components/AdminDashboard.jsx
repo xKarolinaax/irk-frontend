@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 function AdminDashboard() {
     const navigate = useNavigate();
-    // Pobieramy admina z pamięci
     const adminString = localStorage.getItem('currentUser');
     const admin = adminString ? JSON.parse(adminString) : null;
 
@@ -14,7 +13,7 @@ function AdminDashboard() {
 
     return (
         <div style={{ padding: '20px', border: '2px solid red' }}>
-            <h2 style={{ color: 'red' }}>Tajny Panel Administratora</h2>
+            <h2 style={{ color: 'red' }}>Panel Administratora</h2>
             {admin && admin.role === 'ADMIN' ? (
                 <div>
                     <p>Zalogowano jako: <strong>{admin.email}</strong></p>

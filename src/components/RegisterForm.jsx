@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function RegisterForm() {
+function RegisterForm(){
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -78,27 +78,26 @@ function RegisterForm() {
                     {message}
                 </div>
             )}
+        <form onSubmit={handleSubmit}>
+            <label>Imię:</label>
+            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
 
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <label>Imię:</label>
-                <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+            <label>Nazwisko:</label>
+            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
 
-                <label>Nazwisko:</label>
-                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+            <label>Email:</label>
+            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
 
-                <label>Email:</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+            <label>Numer telefonu:</label>
+            <input type="number" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
 
-                <label>Numer telefonu:</label>
-                <input type="number" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
+            <label>Hasło:</label>
+            <input type="password" name="passwordHash" value={formData.passwordHash} onChange={handleChange} required />
 
-                <label>Hasło:</label>
-                <input type="password" name="passwordHash" value={formData.passwordHash} onChange={handleChange} required />
-
-                <button type="submit" style={{ marginTop: '10px' }}>Zarejestruj się</button>
-                <button type='button' onClick={() => navigate('/login')} className="link-button">Masz już konto? Zaloguj się</button>
-            </form>
-        </div>
+            <button type="submit">Zarejestruj się</button>
+            <button type='button' onClick={()=> navigate('/login')} className="link-button">Masz już konto? Zaloguj się</button>
+        </form>
+    </div>
     );
 }
 
