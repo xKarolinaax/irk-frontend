@@ -13,6 +13,8 @@ on: [push, pull-request]
             distribution: 'temurin'
             cashe: 'maven'
         - name: Build & test
+        - name: Make mvnw executable
+          run: chmod +x mvnw
           run: mvn -B clean verify
         - uses: actions/upload-artifact@v4
           with: 
