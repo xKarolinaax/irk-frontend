@@ -19,10 +19,19 @@ function AdminDashboard() {
                 }
             }, [navigate]);
 
-    const handleLogout = () => {
-        localStorage.removeItem('currentUser');
-        navigate('/admin/login');
-    };
+    const handleLogout = async () => {
+            try {
+                await fetch('http://localhost:8081/logout', {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+            } catch (error) {
+                console.error("Błąd podczas zamykania sesji admina:", error);
+            }
+
+            localStorage.removeItem('currentUser');
+            navigate('/admin/login', { replace: true });
+        };
 
     if (!admin) return null;
 

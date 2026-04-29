@@ -14,15 +14,29 @@ function Dashboard() {
             }
         }, [navigate]);
 
-    const handleLogout = () => {
-        localStorage.removeItem('currentUser');
-        alert("Wylogowano pomyślnie!");
-        navigate('/login');
-    };
+    const handleLogout = async () => {
+            try {
+                await fetch('http://localhost:8081/logout', {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+            } catch (error) {
+                console.error("Błąd podczas zamykania sesji w backendzie:", error);
+            }
+
+            localStorage.removeItem('currentUser');
+            alert("Wylogowano pomyślnie!");
+
+            navigate('/login', { replace: true });
+        };
 
     const handleGoToCourses = () => {
         navigate('/courses');
     };
+
+    if (!user) {
+            return null;
+        }
 
     return (
         <div style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '8px', maxWidth: '400px', margin: '20px auto' }}>
