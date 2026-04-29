@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function AdminDashboard() {
     const navigate = useNavigate();
-    const adminString = localStorage.getItem('currentUser');
-    const admin = adminString ? JSON.parse(adminString) : null;
+        const [admin, setAdmin] = useState(null);
+
+        useEffect(() => {
+                const adminString = localStorage.getItem('currentUser');
+                if (adminString) {
+                    const parsedAdmin = JSON.parse(adminString);
+                    if (parsedAdmin.role === 'ADMIN') {
+                        setAdmin(parsedAdmin);
+                    } else {
+                        navigate('/admin/login');
+                    }
+                } else {
+                    navigate('/admin/login');
+                }
+            }, [navigate]);
 
     const handleLogout = () => {
         localStorage.removeItem('currentUser');
         navigate('/admin/login');
     };
+
+    if (!admin) return null;
 
     return (
         <div style={{ padding: '20px', border: '2px solid red' }}>

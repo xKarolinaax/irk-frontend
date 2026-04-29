@@ -23,6 +23,7 @@ function AdminLoginForm(){
             const response = await fetch('http://localhost:8081/api/admins/login', {
                 method:'POST',
                 headers: {'Content-Type': 'application/json'},
+                credentials: 'include',
                 body: JSON.stringify(loginData)
             });
 

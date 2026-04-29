@@ -1,9 +1,21 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Dashboard() {
     const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+            const storedUser = localStorage.getItem('currentUser');
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+            } else {
+                navigate('/login');
+            }
+        }, [navigate]);
 
     const handleLogout = () => {
+        localStorage.removeItem('currentUser');
         alert("Wylogowano pomyślnie!");
         navigate('/login');
     };

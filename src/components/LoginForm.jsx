@@ -26,6 +26,7 @@ function LoginForm(){
             const response = await fetch('http://localhost:8081/api/candidates/login', {
                 method:'POST',
                 headers: {'Content-Type': 'application/json'},
+                credentials: 'include',
                 body: JSON.stringify(loginData)
             });
 
