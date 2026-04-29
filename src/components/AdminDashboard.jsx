@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function AdminDashboard() {
     const navigate = useNavigate();
-    const adminString = localStorage.getItem('currentUser');
-    const admin = adminString ? JSON.parse(adminString) : null;
+        const [admin, setAdmin] = useState(null);
 
-    const handleLogout = () => {
-        localStorage.removeItem('currentUser');
-        navigate('/admin/login');
-    };
+        useEffect(() => {
+                const adminString = localStorage.getItem('currentUser');
+                if (adminString) {
+                    const parsedAdmin = JSON.parse(adminString);
+                    if (parsedAdmin.role === 'ADMIN') {
+                        setAdmin(parsedAdmin);
+                    } else {
+                        navigate('/admin/login');
+                    }
+                } else {
+                    navigate('/admin/login');
+                }
+            }, [navigate]);
+
+    const handleLogout = async () => {
+            try {
+                await fetch('http://localhost:8081/logout', {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+            } catch (error) {
+                console.error("Błąd podczas zamykania sesji admina:", error);
+            }
+
+            localStorage.removeItem('currentUser');
+            navigate('/admin/login', { replace: true });
+        };
+
+    if (!admin) return null;
 
     return (
         <div style={{ padding: '20px', border: '2px solid red' }}>

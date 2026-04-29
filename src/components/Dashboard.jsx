@@ -1,16 +1,42 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Dashboard() {
     const navigate = useNavigate();
+    const [user, setUser] = useState(null);
 
-    const handleLogout = () => {
-        alert("Wylogowano pomyślnie!");
-        navigate('/login');
-    };
+    useEffect(() => {
+            const storedUser = localStorage.getItem('currentUser');
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+            } else {
+                navigate('/login');
+            }
+        }, [navigate]);
+
+    const handleLogout = async () => {
+            try {
+                await fetch('http://localhost:8081/logout', {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+            } catch (error) {
+                console.error("Błąd podczas zamykania sesji w backendzie:", error);
+            }
+
+            localStorage.removeItem('currentUser');
+            alert("Wylogowano pomyślnie!");
+
+            navigate('/login', { replace: true });
+        };
 
     const handleGoToCourses = () => {
         navigate('/courses');
     };
+
+    if (!user) {
+            return null;
+        }
 
     return (
         <div style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '8px', maxWidth: '400px', margin: '20px auto' }}>
