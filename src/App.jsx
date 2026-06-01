@@ -13,6 +13,7 @@ import CandidatesList from './components/CandidatesList';
 import RecruitmentForm from './components/RecruitmentForm';
 import RecruitmentList from './components/RecruitmentList';
 import StudentProfile from './components/StudentProfile';
+import AdminUserRolesManager from './components/AdminUserRolesManager';
 
 function App() {
   return (
@@ -113,6 +114,9 @@ function App() {
             <div className='admin-page-container'>
                <RecruitmentList />
             </div>
+        }/>
+        <Route path="/admin/user-roles" element={
+            <AdminUserRolesManager />
         }/>
       </Routes>
     </Router>
