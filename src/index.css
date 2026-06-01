@@ -546,7 +546,7 @@ button[type="submit"]:hover {
 
 .admin-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
@@ -993,3 +993,230 @@ button[type="submit"]:hover {
     border: 1px solid #ffa39e;
 }
 
+
+/* ========================== */
+/* ADMIN USER ROLES MANAGER   */
+/* ========================== */
+
+.admin-roles-content {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.admin-roles-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.admin-roles-info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #f0f7ff;
+    border: 1px solid #91d5ff;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+}
+
+.admin-roles-info-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.admin-roles-info-card strong {
+    display: block;
+    font-size: 15px;
+    color: #003a8c;
+    margin-bottom: 4px;
+}
+
+.admin-roles-info-card p {
+    font-size: 13px;
+    color: #1890ff;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.admin-roles-loading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    padding: 60px 0;
+    color: #888;
+    font-size: 15px;
+}
+
+.admin-roles-spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid #e8e8e8;
+    border-top-color: #1890ff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.admin-roles-alert {
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.admin-roles-alert-error {
+    background: #fff1f0;
+    color: #cf1322;
+    border: 1px solid #ffa39e;
+}
+
+.admin-roles-empty {
+    text-align: center;
+    color: #999;
+    padding: 60px 20px;
+    font-size: 15px;
+    background: white;
+    border-radius: 12px;
+    border: 1px dashed #d9d9d9;
+}
+
+.admin-roles-table th {
+    background-color: #fafafa;
+    color: #595959;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.admin-roles-table td {
+    vertical-align: middle;
+}
+
+.admin-roles-row:hover {
+    background-color: #fafcff;
+}
+
+.admin-roles-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+}
+
+.admin-roles-email {
+    font-size: 13px;
+    color: #666;
+}
+
+.admin-roles-select {
+    padding: 7px 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    width: 160px;
+}
+
+.admin-roles-select:focus {
+    outline: none;
+    border-color: #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.15);
+}
+
+.admin-roles-select:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+    color: #aaa;
+}
+
+.admin-roles-action-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.admin-roles-save-btn {
+    padding: 7px 18px;
+    background-color: #1890ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+}
+
+.admin-roles-save-btn:hover:not(.admin-roles-save-btn--disabled) {
+    background-color: #096dd9;
+    box-shadow: 0 2px 8px rgba(24, 144, 255, 0.35);
+}
+
+.admin-roles-save-btn--disabled {
+    background-color: #d9d9d9;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.admin-roles-row-msg {
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 3px 8px;
+    text-align: center;
+    animation: fadeIn 0.2s ease;
+}
+
+.admin-roles-row-msg--success {
+    background: #f6ffed;
+    color: #389e0d;
+    border: 1px solid #b7eb8f;
+}
+
+.admin-roles-row-msg--error {
+    background: #fff1f0;
+    color: #cf1322;
+    border: 1px solid #ffa39e;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1100px) {
+    .admin-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+    .admin-roles-table {
+        font-size: 12px;
+    }
+    .admin-roles-select {
+        width: 120px;
+    }
+}

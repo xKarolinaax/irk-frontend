@@ -136,6 +136,27 @@ function AdminDashboard() {
                     </button>
                 </div>
 
+                {/* KARTA 4 */}
+                <div className="admin-card">
+                    <div>
+                        <div className="admin-card-icon">🔑</div>
+
+                        <h3>Zarządzanie Rolami</h3>
+
+                        <p>
+                            Edytuj role użytkowników i zarządzaj ich uprawnieniami w systemie.
+                        </p>
+                    </div>
+
+                    <button
+                        id="admin-user-roles-btn"
+                        onClick={() => navigate('/admin/user-roles')}
+                        className="admin-btn-primary"
+                    >
+                        Zarządzaj rolami
+                    </button>
+                </div>
+
             </div>
 
             {/* FOOTER */}
